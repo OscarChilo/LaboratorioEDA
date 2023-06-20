@@ -26,4 +26,7 @@ public class Node<T> {
         this.valor=valor;
         this.next=next;
     }
+    public void getTime(){
+        
+    }
 }

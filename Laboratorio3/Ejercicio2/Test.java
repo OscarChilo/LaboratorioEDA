@@ -1,4 +1,4 @@
-public class test{
+public class Test{
 		public static void main(String[] args) {
 			Stack<String> stack=new Stack<>();
 			stack.push("A");

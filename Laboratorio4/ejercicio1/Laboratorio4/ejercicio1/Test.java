@@ -48,7 +48,7 @@ public class Test {
     private static NodeList<Integer> generatePoorCase(NodeList<Integer> list, int n) {
 
         for (int i = n; i <= 1; i--) {
-            list.add(i);
+            list.add(i, n);
         }
         return list;
     }

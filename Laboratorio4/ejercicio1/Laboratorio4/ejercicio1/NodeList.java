@@ -1,6 +1,7 @@
 package Laboratorio4.ejercicio1;
 
 import java.util.*;
+
 //import Laboratorio4.ejercicio1.Node;
 //import org.w3c.dom.NodeList;
 
@@ -12,6 +13,7 @@ public class NodeList<T> {
     private Node<T> raiz;
     private int size;
     private long time;
+    private int index;
 
     public NodeList() {
         this.raiz = null;
@@ -58,7 +60,7 @@ public class NodeList<T> {
 
     public void addAll(Collection<? extends T> c) {
         for (T element : c) {
-            this.add(element);
+            this.add(index, element);
         }
     }
 

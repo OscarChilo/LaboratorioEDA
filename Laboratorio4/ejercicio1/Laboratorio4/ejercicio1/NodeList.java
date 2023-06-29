@@ -2,9 +2,6 @@ package Laboratorio4.ejercicio1;
 
 import java.util.*;
 
-//import Laboratorio4.ejercicio1.Node;
-//import org.w3c.dom.NodeList;
-
 /**
  * NodeList
  */

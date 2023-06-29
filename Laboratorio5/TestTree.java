@@ -1,5 +1,5 @@
-import Laboratorio4.ejercicio2.ExceptionNoFound;
-
+//import Laboratorio4.ejercicio2.ExceptionNoFound;
+//import myExceptions.ExceptionNoFound;
 public class TestTree {
     public static void main(String[] args) throws ExceptionNoFound {
         TreeAvl<Integer> n = new TreeAvl<Integer>();
@@ -11,7 +11,7 @@ public class TestTree {
         System.out.println("root: " + n.getRoot());
         n.insert(40);
         n.inOrden();
-        System.out.println("root: " + n.getRoot);
+        System.out.println("root: " + n.getRoot());
         n.insert(50);
         n.inOrden();
         n.insert(60);

@@ -8,7 +8,7 @@ public class NodeAvl<T> {
         this.data = data;
         this.left = left;
         this.right = right;
-        ths.bf = 0;
+        this.bf = 0;
     }
 
     public int getBf() {

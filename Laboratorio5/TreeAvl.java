@@ -1,9 +1,4 @@
-//import javax.swing.text.DefaultEditorKit.InsertBreakAction;
-
-//import Laboratorio4.ejercicio2.ExceptionNoFound;
-
-import Laboratorio4.ejercicio2.ExceptionNoFound;
-
+//import myExceptions.ExceptionNoFound;
 public class TreeAvl<T extends Comparable<T>> {
     private NodeAvl<T> root;
     private boolean height;
@@ -24,7 +19,7 @@ public class TreeAvl<T extends Comparable<T>> {
     public NodeAvl<T> insert(T x, NodeAvl<T> current) throws ExceptionNoFound {
         NodeAvl<T> res = current;
         if (current == null) {
-            rest = new NodeAvl<T>();
+            res = new NodeAvl<T>(x);
             this.height = true;
         } else {
             int resC = current.getData().compareTo(x);
@@ -33,13 +28,13 @@ public class TreeAvl<T extends Comparable<T>> {
             if (resC < 0) {
                 res.setRight(insert(x, current.getRight()));
                 if (this.height) {
-                    switch (res.getBf) {
+                    switch (res.getBf()) {
                         case -1:
                             res.setBf(0);
                             this.height = false;
                             break;
                         case 0:
-                            rest.setBf(1);
+                            res.setBf(1);
                             break;
                         case 1:
                             res = balanceToLeft(res);
@@ -59,19 +54,21 @@ public class TreeAvl<T extends Comparable<T>> {
         if (son.getBf() == 1) {
             node.setBf(0);
             son.setBf(0);
-            node = rotateRsl(node);
-        } else if (son.getBf() == 1) {
+            node = rotateRSL(node);
+        } else if (son.getBf() == -1) {
+
+            NodeAvl<T> gSon = son.getLeft();
             switch (gSon.getBf()) {
                 case -1:
-                    nod.setBf(0);
+                    node.setBf(0);
                     son.setBf(-1);
                     break;
                 case 0:
-                    nod.setBf(0);
+                    node.setBf(0);
                     son.setBf(0);
                     break;
                 case 1:
-                    nod.setBf(1);
+                    node.setBf(1);
                     son.setBf(0);
                     break;
             }
@@ -82,8 +79,8 @@ public class TreeAvl<T extends Comparable<T>> {
         return node;
     }
 
-    private NOdeAvl<T> rotateRSL(NodeAvl<T> node) {
-        NOdeAvl<T> son = node.getRight();
+    private NodeAvl<T> rotateRSL(NodeAvl<T> node) {
+        NodeAvl<T> son = node.getRight();
         node.setRight(son.getLeft());
         son.setLeft(node);
         node = son;
@@ -91,7 +88,7 @@ public class TreeAvl<T extends Comparable<T>> {
     }
 
     private NodeAvl<T> rotateRSR(NodeAvl<T> node) {
-        NOdeAvl<T> son = node.getLeft();
+        NodeAvl<T> son = node.getLeft();
         node.setLeft(son.getRight());
         son.setRight(node);
         node = son;
@@ -103,13 +100,13 @@ public class TreeAvl<T extends Comparable<T>> {
     }
 
     public T search(T x) throws ExceptionNoFound {
-        nodeAvl<T> aux = search(x, this.root);
+        NodeAvl<T> aux = search(x, this.root);
         if (aux == null)
             throw new ExceptionNoFound("El elemento no se encuentra en el arbol");
         return aux.getData();
     }
 
-    private nodeAvl<T> search(T x, NodeAvl<T> current) throws ExceptionNoFound {
+    private NodeAvl<T> search(T x, NodeAvl<T> current) throws ExceptionNoFound {
         if (current == null) {
             return null;
         } else {
@@ -124,7 +121,11 @@ public class TreeAvl<T extends Comparable<T>> {
         }
     }
 
-    public void remove(T x, NodeAvl<T> current) throws ExceptionNoFound {
+    public void remove(T x) throws ExceptionNoFound {
+        this.root = remove(x, this.root);
+    }
+
+    public NodeAvl<T> remove(T x, NodeAvl<T> current) throws ExceptionNoFound {
         NodeAvl<T> res = current;
         if (current == null) {
             throw new ExceptionNoFound("Elemento no se encuentra en el arbol");
@@ -142,7 +143,7 @@ public class TreeAvl<T extends Comparable<T>> {
                         if (isLeaf(current)) {
                             res = null;
                         } else {
-                            res = current.getLeft() != 0 ? current.getLeft() : current.getRight();
+                            res = current.getLeft() != null ? current.getLeft() : current.getRight();
                         }
                     }
                 }
@@ -163,5 +164,13 @@ public class TreeAvl<T extends Comparable<T>> {
             inOrden(this.root);
             System.out.println();
         }
+    }
+
+    private void inOrden(NodeAvl<T> current) {
+        if (current.getLeft() != null)
+            inOrden(current.getLeft());
+        System.out.println(current + ", ");
+        if (current.getRight() != null)
+            inOrden(current.getRight());
     }
 }

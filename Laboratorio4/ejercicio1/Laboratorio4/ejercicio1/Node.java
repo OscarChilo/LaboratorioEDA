@@ -1,7 +1,5 @@
 package Laboratorio4.ejercicio1;
 
-//import org.w3c.dom.Node;
-
 /**
  * Node
  */

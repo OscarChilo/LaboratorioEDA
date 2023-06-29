@@ -8,7 +8,6 @@ import java.util.Scanner;
 import com.panayotis.gnuplot.JavaPlot;
 
 public class Test {
-
     /**
      * //@param args
      * //@throws FileNotFoundException

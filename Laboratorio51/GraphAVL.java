@@ -43,7 +43,7 @@ public class GraphAVL {
 
         graph.setAttribute("ui.stylesheet", styleSheet);
 
-        NodeAvl<Integer> rootNode = treeAvl.getRoot();
+        NodeAvl<Integer> rootNode = (NodeAvl<Integer>) treeAvl.getRoot();
 
         if (rootNode != null) {
             Node graphRootNode = graph.addNode(getNodeId(rootNode.getData(), characterCount(rootNode.getData())));

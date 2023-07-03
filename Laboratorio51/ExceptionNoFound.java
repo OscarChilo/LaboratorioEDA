@@ -1,4 +1,4 @@
-package Laboratorio5;
+package Laboratorio51;
 
 public class ExceptionNoFound extends Exception {
     public ExceptionNoFound() {

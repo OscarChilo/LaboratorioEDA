@@ -1,4 +1,4 @@
-package Laboratorio5;
+package Laboratorio51;
 
 public class NodeAvl<T> {
     private T data;

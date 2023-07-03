@@ -1,4 +1,4 @@
-package Laboratorio5;
+package Laboratorio51;
 
 public class TreeAvl<T extends Comparable<T>> {
     private NodeAvl<T> root;
@@ -45,9 +45,55 @@ public class TreeAvl<T extends Comparable<T>> {
                 }
             } else {
                 res.setLeft(insert(x, current.getLeft()));
+                if (this.height) {
+                    switch (res.getBf()) {
+                        case -1:
+                            res = balanceToRight(res);
+                            this.height = false;
+                            break;
+                        case 0:
+                            res.setBf(-1);
+                            break;
+                        case 1:
+                            res.setBf(0);
+                            this.height = false;
+                            break;
+                    }
+                }
             }
         }
         return res;
+    }
+
+    private NodeAvl<T> balanceToRight(NodeAvl<T> node) {
+        NodeAvl<T> son = node.getLeft();
+        if (son.getBf() == -1) {
+            node.setBf(0);
+            son.setBf(0);
+            node = rotateRSL(node);
+        } else if (son.getBf() == 1) {
+
+            NodeAvl<T> gSon = son.getRight();
+            switch (gSon.getBf()) {
+                case 1:
+                    node.setBf(0);
+                    son.setBf(-1);
+                    break;
+                case 0:
+                    node.setBf(0);
+                    son.setBf(0);
+                    break;
+                case -1:
+                    node.setBf(1);
+                    son.setBf(0);
+                    break;
+            }
+            gSon.setBf(0);
+
+            node.setRight(rotateRSR(son));
+            node = rotateRSR(node);
+        }
+        return node;
     }
 
     private NodeAvl<T> balanceToLeft(NodeAvl<T> node) {
@@ -97,7 +143,10 @@ public class TreeAvl<T extends Comparable<T>> {
     }
 
     public T getRoot() {
-        return this.root.getData();
+        if (root != null) {
+            return (T) this.root.getData();
+        }
+        return null;
     }
 
     public T search(T x) throws ExceptionNoFound {

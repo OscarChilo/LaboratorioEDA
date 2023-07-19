@@ -38,11 +38,8 @@ public class GraphAVL {
                 System.out.println("Error al insertar en ele arbol AVL: " + e.getMessage());
             }
         }
-
         Graph graph = new SingleGraph("AVL Tree");
-
         graph.setAttribute("ui.stylesheet", styleSheet);
-
         NodeAvl<Integer> rootNode = (NodeAvl<Integer>) treeAvl.getRoot();
 
         if (rootNode != null) {
@@ -51,7 +48,6 @@ public class GraphAVL {
             graphRootNode.setAttribute("xy", 0, 0);
             visualiceTree(rootNode, graphRootNode, 0, 0);
         }
-
         Viewer viewer = graph.display();
         viewer.disableAutoLayout();
     }

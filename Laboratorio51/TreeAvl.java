@@ -144,7 +144,7 @@ public class TreeAvl<T extends Comparable<T>> {
 
     public T getRoot() {
         if (root != null) {
-            return (T) this.root.getData();
+            return this.root.getData();
         }
         return null;
     }

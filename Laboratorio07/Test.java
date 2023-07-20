@@ -11,5 +11,10 @@ public class Test {
         // buscar palabras
         System.out.println(trie.search("hello"));
         System.out.println(trie.search("hola"));
+
+        trie.insert("aprobando");
+
+        System.out.println(trie.search("aprobando"));
+        System.out.println(trie.search("cruel"));
     }
 }
